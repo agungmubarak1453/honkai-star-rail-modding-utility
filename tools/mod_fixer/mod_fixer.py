@@ -19,7 +19,7 @@ def fix(mod_path=".", fix_code=None, is_dry_run=False):
     print("Fixing mod...")
 
     if fix_code is None:
-        get_script("mod_fixer/rabbitfx_fixer.py")["fix"](mod_path, is_dry_run)
         get_script("mod_fixer/hash_fixer.py")["fix"](mod_path, is_dry_run)
+        get_script("mod_fixer/rabbitfx_fixer.py")["fix"](mod_path, is_dry_run)
     else:
         print(f"Fix Code: {fix_code}")
