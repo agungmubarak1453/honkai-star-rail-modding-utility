@@ -1,25 +1,46 @@
-import urllib.request
+#!/usr/bin/env python3
 
-BASE_URL = "https://raw.githubusercontent.com/agungmubarak1453/honkai-star-rail-modding-utility/main/tools/"
+# MARK: Script Helpers
 
-def get_script(script_path):
-    script_url = BASE_URL + script_path
+import os
+from pathlib import Path
 
-    print(f"Fetching script: {script_url}")
+LOCAL_MODE = os.getenv("LOCAL_MODE", "false").lower() == "true"
+BASE_URL = os.getenv("BASE_URL", "https://raw.githubusercontent.com/agungmubarak1453/honkai-star-rail-modding-utility/main/") 
+LOCAL_DIR = os.getenv("LOCAL_DIR")
+WORKSPACE_DIR = "tools/mod_fixer"
 
-    source = urllib.request.urlopen(script_url).read()
-    code = compile(source, script_url, "exec")
+def get_script(script_path, namespace={}):
+    if LOCAL_MODE:
+        script_file = os.path.join(LOCAL_DIR + WORKSPACE_DIR, script_path)
 
-    namespace = {}
+        print(f"Loading local script: {script_file}")
+
+        with open(script_file, "rb") as f:
+            source = f.read()
+
+        filename = script_file
+    else:
+        script_url = BASE_URL + WORKSPACE_DIR + script_path
+
+        print(f"Fetching script: {script_url}")
+
+        source = urllib.request.urlopen(script_url).read()
+        filename = script_url
+
+    code = compile(source, filename, "exec")
+
     exec(code, namespace)
 
     return namespace
 
-def fix(mod_path=".", fix_code=None, is_dry_run=False):
-    print("Fixing mod...")
+# MARK: Body
 
-    if fix_code is None:
-        get_script("mod_fixer/hash_fixer.py")["fix"](mod_path, is_dry_run)
-        get_script("mod_fixer/rabbitfx_fixer.py")["fix"](mod_path, is_dry_run)
-    else:
-        print(f"Fix Code: {fix_code}")
+def fix(mod_path=".", fix_code=None, is_dry_run=False):
+    print("Fixing modsasas...")
+
+    # if fix_code is None:
+    #     get_script("hash_fixer.py")["fix"](mod_path, is_dry_run)
+    #     get_script("rabbitfx_fixer.py")["fix"](mod_path, is_dry_run)
+    # else:
+    #     print(f"Fix Code: {fix_code}")
