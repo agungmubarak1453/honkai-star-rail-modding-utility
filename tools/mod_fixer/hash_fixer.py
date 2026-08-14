@@ -10,11 +10,12 @@ from pathlib import Path
 LOCAL_MODE = os.getenv("LOCAL_MODE", "false").lower() == "true"
 BASE_URL = os.getenv("BASE_URL", "https://raw.githubusercontent.com/agungmubarak1453/honkai-star-rail-modding-utility/main/") 
 LOCAL_DIR = os.getenv("LOCAL_DIR")
-WORKSPACE_DIR = ""
 
 def get_script(script_path, namespace={}):
+    workspace_dir = ""
+    
     if LOCAL_MODE:
-        script_file = os.path.join(LOCAL_DIR + WORKSPACE_DIR, script_path)
+        script_file = os.path.join(LOCAL_DIR + workspace_dir, script_path)
 
         print(f"Loading local script: {script_file}")
 
@@ -23,7 +24,7 @@ def get_script(script_path, namespace={}):
 
         filename = script_file
     else:
-        script_url = BASE_URL + WORKSPACE_DIR + script_path
+        script_url = BASE_URL + workspace_dir + script_path
 
         print(f"Fetching script: {script_url}")
 
@@ -73,7 +74,7 @@ WARN_STR:str  = "\033[1m\033[1;33mWarning:\033[0m"
 input_output_manager = get_script("tools/general/input_output_manager.py")
 
 # "NamePart" : (blend_hash, draw_hash, pos_hash)
-VALID_HASH_TRIOS = input_output_manager["load_json_data"](BASE_URL + "datas/valid_hashes.json")
+VALID_HASH_TRIOS = input_output_manager["load_json_data"]("datas/valid_hashes.json")
 
 @dataclass
 class INI_Line:
