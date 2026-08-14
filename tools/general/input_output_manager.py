@@ -1,3 +1,15 @@
+#!/usr/bin/env python3
+
+# MARK: Script Helpers
+
+import os
+
+LOCAL_MODE = os.getenv("LOCAL_MODE", "false").lower() == "true"
+BASE_URL = os.getenv("BASE_URL", "https://raw.githubusercontent.com/agungmubarak1453/honkai-star-rail-modding-utility/main/") 
+LOCAL_DIR = os.getenv("LOCAL_DIR")
+
+# MARK: Body
+
 import json
 import urllib.request
 import shutil
@@ -19,8 +31,18 @@ def handle_backup(path):
 
     shutil.copy2(file, backup_path)
 
-def load_json_data(path):
+def load_json_data(path, is_relative=True):
+    workspace_dir = ""
+
     data = None
+
+    if is_relative:
+        if LOCAL_MODE:
+            path = LOCAL_DIR + workspace_dir + path
+        else:
+            path = BASE_URL + workspace_dir + path
+
+    print(f"path: {workspace_dir}")
 
     if path.startswith(("http://", "https://")):
         with urllib.request.urlopen(path) as response:

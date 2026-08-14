@@ -10,11 +10,12 @@ from pathlib import Path
 LOCAL_MODE = os.getenv("LOCAL_MODE", "false").lower() == "true"
 BASE_URL = os.getenv("BASE_URL", "https://raw.githubusercontent.com/agungmubarak1453/honkai-star-rail-modding-utility/main/") 
 LOCAL_DIR = os.getenv("LOCAL_DIR")
-WORKSPACE_DIR = "tools/general/"
 
 def get_script(script_path, namespace={}):
+    workspace_dir = "tools/general/"
+
     if LOCAL_MODE:
-        script_file = os.path.join(LOCAL_DIR + WORKSPACE_DIR, script_path)
+        script_file = os.path.join(LOCAL_DIR + workspace_dir, script_path)
 
         print(f"Loading local script: {script_file}")
 
@@ -23,7 +24,7 @@ def get_script(script_path, namespace={}):
 
         filename = script_file
     else:
-        script_url = BASE_URL + WORKSPACE_DIR + script_path
+        script_url = BASE_URL + workspace_dir + script_path
 
         print(f"Fetching script: {script_url}")
 

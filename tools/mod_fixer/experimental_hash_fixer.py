@@ -10,9 +10,10 @@ from pathlib import Path
 LOCAL_MODE = os.getenv("LOCAL_MODE", "false").lower() == "true"
 BASE_URL = os.getenv("BASE_URL", "https://raw.githubusercontent.com/agungmubarak1453/honkai-star-rail-modding-utility/main/") 
 LOCAL_DIR = os.getenv("LOCAL_DIR")
-WORKSPACE_DIR = ""
 
 def get_script(script_path, namespace={}):
+    WORKSPACE_DIR = ""
+    
     if LOCAL_MODE:
         script_file = os.path.join(LOCAL_DIR + WORKSPACE_DIR, script_path)
 
@@ -47,11 +48,7 @@ def fix(mod_path=".", is_dry_run=False):
     files = input_output_manager_script["get_all_files_with_extension"](mod_path, "ini")
     ini_files = [ini_file_script["IniFile"](file) for file in files]
 
-    replacing_hashes_path = WORKSPACE_DIR + "datas/replacing_hashes.json"
-    if LOCAL_MODE:
-        replacing_hashes_path = LOCAL_DIR + replacing_hashes_path
-    else:
-        replacing_hashes_path = BASE_URL + replacing_hashes_path
+    replacing_hashes_path = "datas/replacing_hashes.json"
 
     replacing_hashes = input_output_manager_script["load_json_data"](replacing_hashes_path)
 
