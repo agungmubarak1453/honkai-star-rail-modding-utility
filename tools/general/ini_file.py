@@ -73,4 +73,4 @@ class IniFile:
         input_output_manager_script["write_text"](writing_path, self.text_string)
 
     def __str__(self):
-        return self.path
+        return str(self.path)
