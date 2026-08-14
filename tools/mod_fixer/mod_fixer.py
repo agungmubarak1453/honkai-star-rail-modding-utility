@@ -10,7 +10,7 @@ from pathlib import Path
 LOCAL_MODE = os.getenv("LOCAL_MODE", "false").lower() == "true"
 BASE_URL = os.getenv("BASE_URL", "https://raw.githubusercontent.com/agungmubarak1453/honkai-star-rail-modding-utility/main/") 
 LOCAL_DIR = os.getenv("LOCAL_DIR")
-WORKSPACE_DIR = "tools/mod_fixer"
+WORKSPACE_DIR = "tools/mod_fixer/"
 
 def get_script(script_path, namespace={}):
     if LOCAL_MODE:
