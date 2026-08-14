@@ -46,3 +46,7 @@ def fix(mod_path=".", fix_code=None, is_dry_run=False):
         get_script("rabbitfx_fixer.py")["fix"](mod_path, is_dry_run)
     else:
         print(f"Fix Code: {fix_code}")
+
+        match fix_code:
+            case "experimental":
+                get_script("experimental_hash_fixer.py")["fix"](mod_path, is_dry_run)
