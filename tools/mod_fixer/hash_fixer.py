@@ -74,7 +74,7 @@ WARN_STR:str  = "\033[1m\033[1;33mWarning:\033[0m"
 input_output_manager = get_script("tools/general/input_output_manager.py")
 
 # "NamePart" : (blend_hash, draw_hash, pos_hash)
-VALID_HASH_TRIOS = input_output_manager["load_json_data"](BASE_URL + "datas/valid_hashes.json")
+VALID_HASH_TRIOS = input_output_manager["load_json_data"]("datas/valid_hashes.json")
 
 @dataclass
 class INI_Line:
