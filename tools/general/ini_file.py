@@ -43,7 +43,7 @@ import re
 from dataclasses import dataclass, field
 from typing import Optional
 
-input_output_manager_script = get_script(input_output_manager.py)
+input_output_manager_script = get_script("input_output_manager.py")
 
 # Regex patterns
 RE_SECTION   = re.compile(r"^\[([^\]]+)\]$")
@@ -61,7 +61,7 @@ class IniFile:
             return False
 
     def replace(self, old_string, new_string):
-        self.text_string.replace(old_string, new_string)
+        self.text_string = self.text_string.replace(old_string, new_string)
 
     def write_file(self, new_path=None):
         writing_path = self.path

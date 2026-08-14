@@ -39,7 +39,7 @@ def get_script(script_path, namespace={}):
 # MARK: Body
 
 input_output_manager_script = get_script("tools/general/input_output_manager.py")
-ini_file_script = get_script("tools/general/ini_file.py.py")
+ini_file_script = get_script("tools/general/ini_file.py")
 
 def fix(mod_path=".", is_dry_run=False):
     print("Fixing mod with experimental hash fixer...")
@@ -48,7 +48,9 @@ def fix(mod_path=".", is_dry_run=False):
     ini_files = [ini_file_script["IniFile"](file) for file in files]
 
     replacing_hashes_path = WORKSPACE_DIR + "datas/replacing_hashes.json"
-    if not LOCAL_MODE:
+    if LOCAL_MODE:
+        replacing_hashes_path = LOCAL_DIR + replacing_hashes_path
+    else:
         replacing_hashes_path = BASE_URL + replacing_hashes_path
 
     replacing_hashes = input_output_manager_script["load_json_data"](replacing_hashes_path)
@@ -56,6 +58,8 @@ def fix(mod_path=".", is_dry_run=False):
     modified_ini_files = []
 
     for ini_file in ini_files:
+        is_modified = False
+
         for key, value in replacing_hashes.items():
             if ini_file.is_found(key):
                 old_hash = key
@@ -70,7 +74,10 @@ def fix(mod_path=".", is_dry_run=False):
 
                     ini_file.replace(old_hash, new_hash)
 
-                    modified_ini_files.append(ini_file)
+                    is_modified = True
+        
+        if is_modified:
+            modified_ini_files.append(ini_file)
     
     # Apply the change
     for ini_file in modified_ini_files:

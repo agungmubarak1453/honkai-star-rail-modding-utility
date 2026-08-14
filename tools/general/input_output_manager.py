@@ -32,12 +32,12 @@ def load_json_data(path):
     return data
 
 def load_text(path):
-    Path(path).read_text(encoding="utf-8")
+    return Path(path).read_text(encoding="utf-8")
 
 def write_text(path, text_string):
-    file = Path(path)
+    handle_backup(path)
 
-    handle_backup(file)
+    file = Path(path)
 
     # Write the new content
     file.write_text(text_string, encoding="utf-8")
