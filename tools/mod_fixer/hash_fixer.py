@@ -1,3 +1,43 @@
+#!/usr/bin/env python3
+
+# MARK: Script Helpers
+
+import os
+import urllib.request
+
+from pathlib import Path
+
+LOCAL_MODE = os.getenv("LOCAL_MODE", "false").lower() == "true"
+BASE_URL = os.getenv("BASE_URL", "https://raw.githubusercontent.com/agungmubarak1453/honkai-star-rail-modding-utility/main/") 
+LOCAL_DIR = os.getenv("LOCAL_DIR")
+WORKSPACE_DIR = ""
+
+def get_script(script_path, namespace={}):
+    if LOCAL_MODE:
+        script_file = os.path.join(LOCAL_DIR + WORKSPACE_DIR, script_path)
+
+        print(f"Loading local script: {script_file}")
+
+        with open(script_file, "rb") as f:
+            source = f.read()
+
+        filename = script_file
+    else:
+        script_url = BASE_URL + WORKSPACE_DIR + script_path
+
+        print(f"Fetching script: {script_url}")
+
+        source = urllib.request.urlopen(script_url).read()
+        filename = script_url
+
+    code = compile(source, filename, "exec")
+
+    exec(code, namespace)
+
+    return namespace
+
+# MARK: Body
+
 # Written by petrascyll
 #   thanks to zlevir for help dumping and adding fixes during 2.3
 #     thanks to sora_ for help collecting the vertex explosion extra position hashes
@@ -26,28 +66,11 @@ from textwrap import dedent
 import math
 from typing import Optional
 
-import urllib.request
-
 os.system('') # I hate powershell <3
 ERROR_STR:str = "\033[1m\033[0;31mError:\033[0m"
 WARN_STR:str  = "\033[1m\033[1;33mWarning:\033[0m"
 
-BASE_URL = "https://raw.githubusercontent.com/agungmubarak1453/honkai-star-rail-modding-utility/main/"
-
-def get_script(script_path):
-    script_url = BASE_URL + "tools/" + script_path
-
-    print(f"Fetching script: {script_url}")
-
-    source = urllib.request.urlopen(script_url).read()
-    code = compile(source, script_url, "exec")
-
-    namespace = {}
-    exec(code, namespace)
-
-    return namespace
-
-input_output_manager = get_script("general/input_output_manager.py")
+input_output_manager = get_script("tools/general/input_output_manager.py")
 
 # "NamePart" : (blend_hash, draw_hash, pos_hash)
 VALID_HASH_TRIOS = input_output_manager["load_json_data"](BASE_URL + "datas/valid_hashes.json")
