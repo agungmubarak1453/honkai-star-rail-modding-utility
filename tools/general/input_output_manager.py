@@ -42,8 +42,6 @@ def load_json_data(path, is_relative=True):
         else:
             path = BASE_URL + workspace_dir + path
 
-    print(f"path: {workspace_dir}")
-
     if path.startswith(("http://", "https://")):
         with urllib.request.urlopen(path) as response:
             data = json.load(response)
