@@ -3,6 +3,8 @@
 # MARK: Script Helpers
 
 import os
+import urllib.request
+
 from pathlib import Path
 
 LOCAL_MODE = os.getenv("LOCAL_MODE", "false").lower() == "true"
@@ -37,7 +39,6 @@ def get_script(script_path, namespace={}):
 # MARK: Body
 
 import argparse
-import urllib.request
 
 def main():
     parser = argparse.ArgumentParser()

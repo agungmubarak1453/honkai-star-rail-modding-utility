@@ -3,6 +3,8 @@
 # MARK: Script Helpers
 
 import os
+import urllib.request
+
 from pathlib import Path
 
 LOCAL_MODE = os.getenv("LOCAL_MODE", "false").lower() == "true"

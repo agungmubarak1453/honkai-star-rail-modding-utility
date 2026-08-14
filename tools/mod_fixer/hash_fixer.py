@@ -3,6 +3,8 @@
 # MARK: Script Helpers
 
 import os
+import urllib.request
+
 from pathlib import Path
 
 LOCAL_MODE = os.getenv("LOCAL_MODE", "false").lower() == "true"
@@ -63,8 +65,6 @@ from dataclasses import dataclass, field
 from textwrap import dedent
 import math
 from typing import Optional
-
-import urllib.request
 
 os.system('') # I hate powershell <3
 ERROR_STR:str = "\033[1m\033[0;31mError:\033[0m"
