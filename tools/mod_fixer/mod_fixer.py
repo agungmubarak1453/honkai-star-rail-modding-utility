@@ -37,10 +37,10 @@ def get_script(script_path, namespace={}):
 # MARK: Body
 
 def fix(mod_path=".", fix_code=None, is_dry_run=False):
-    print("Fixing modsasas...")
+    print("Fixing mod...")
 
-    # if fix_code is None:
-    #     get_script("hash_fixer.py")["fix"](mod_path, is_dry_run)
-    #     get_script("rabbitfx_fixer.py")["fix"](mod_path, is_dry_run)
-    # else:
-    #     print(f"Fix Code: {fix_code}")
+    if fix_code is None:
+        get_script("hash_fixer.py")["fix"](mod_path, is_dry_run)
+        get_script("rabbitfx_fixer.py")["fix"](mod_path, is_dry_run)
+    else:
+        print(f"Fix Code: {fix_code}")
