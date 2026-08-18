@@ -1300,7 +1300,7 @@ class Ini():
         if self.touched:
             basename = os.path.basename(self.filepath).split('.ini')[0]
             dir_path = os.path.abspath(self.filepath.split(basename+'.ini')[0])
-            backup_filename = f'DISABLED_BACKUP_{int(time.time())}.{basename}.ini'
+            backup_filename = f'DISABLED_FORKED_BACKUP_{int(time.time())}.{basename}.ini'
             backup_fullpath = os.path.join(dir_path, backup_filename)
 
             os.rename(self.filepath, backup_fullpath)
