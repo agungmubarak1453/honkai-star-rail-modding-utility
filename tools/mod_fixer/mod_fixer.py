@@ -44,6 +44,7 @@ def fix(mod_path=".", fix_code=None, is_dry_run=False):
 
     if fix_code is None:
         get_script("hash_fixer.py")["fix"](mod_path, is_dry_run)
+        get_script("forked_hash_fixer.py")["fix"](mod_path, is_dry_run)
         get_script("rabbitfx_fixer.py")["fix"](mod_path, is_dry_run)
         get_script("experimental_hash_fixer.py")["fix"](mod_path, is_dry_run)
     else:
@@ -52,3 +53,4 @@ def fix(mod_path=".", fix_code=None, is_dry_run=False):
         match fix_code:
             case "experimental":
                 get_script("forked_hash_fixer.py")["fix"](mod_path, is_dry_run)
+                get_script("rabbitfx_fixer.py")["fix"](mod_path, is_dry_run)
