@@ -1866,4 +1866,66 @@ def upgrade_else_comment_indexed(ini: Ini, *, missing, hash, title, trg_indices,
     ]
 
 hash_commands = {
+    # MARK: Sparxie
+
+    '337f7de8': [('info', 'v3.3 -> v4.4: Sparxie Hash'), (upgrade_hash, {'to': '51288e6a'})],
+    '547d13f7': [('info', 'v3.3 -> v4.4: Sparxie Hash'), (upgrade_hash, {'to': 'b9250480'})],
+    'df489315': [('info', 'v3.3 -> v4.4: Sparxie Hash'), (upgrade_hash, {'to': '12f315d4'})],
+    'a0dfb1ac': [('info', 'v3.3 -> v4.4: Sparxie Hash'), (upgrade_hash, {'to': '54ee8b35'})],
+    '4dcbf0c8': [('info', 'v3.3 -> v4.4: Sparxie Hash'), (upgrade_hash, {'to': '5c2a2064'})],
+
+    'b7124f06': [('info', 'v3.3 -> v4.4: Sparxie Hash'), (upgrade_hash, {'to': 'd507f62a'})],
+    '979806ea': [('info', 'v3.3 -> v4.4: Sparxie Hash'), (upgrade_hash, {'to': '3ef2cc18'})],
+    'f241b31a': [('info', 'v3.3 -> v4.4: Sparxie Hash'), (upgrade_hash, {'to': 'a4f51f30'})],
+    '67ec715e': [('info', 'v3.3 -> v4.4: Sparxie Hash'), (upgrade_hash, {'to': '0e39f0ac'})],
+    'fa679826': [('info', 'v3.3 -> v4.4: Sparxie Hash'), (upgrade_hash, {'to': 'd734b734'})],
+
+    # TODO: This is still buggy. Texture is loaded but vertexes are exploded. Find correct fixing!
+    # MARK: Stelle
+    
+    # 'f05d06de': [('info', 'v3.3 -> v3.7: Stelle Hash'), (upgrade_hash, {'to': 'ed04bfc7'})],
+    # 'b55c8431': [('info', 'v3.3 -> v3.7: Stelle Hash'), (upgrade_hash, {'to': '195d016d'})],
+    # 'f00b6ded': [('info', 'v3.3 -> v3.7: Stelle Hash'), (upgrade_hash, {'to': '454c77a5'})],
+
+    # '7ef7100f66e87ae5': [('info', 'v3.3 -> v3.7: Stelle Hash'), (upgrade_hash, {'to': 'eec35f974a28be87'})],
+
+    # 'fba309df': [
+    #     ('info', 'v3.3 -> v3.7: Stelle Body IB Hash'),
+    #     (multiply_indexed_section, {
+    #         'title': 'FixedStelleDestruction',
+    #         'hash': '47695dd6',
+    #         'trg_indices': ['0', '35661'],
+    #         'src_indices': ['0', '32946'],
+    #     })
+    # ],
+
+    # '195d016d': [('info', 'v3.7 -> v4.0: Stelle Hash'), (upgrade_hash, {'to': '344c4e99'})],
+    # '454c77a5': [('info', 'v3.7 -> v4.0: Stelle Hash'), (upgrade_hash, {'to': '54d45960'})],
+    # 'd52d7139': [('info', 'v3.7 -> v4.0: Stelle Hash'), (upgrade_hash, {'to': 'f8209611'})],
+    # '78d10c03': [('info', 'v3.7 -> v4.0: Stelle Hash'), (upgrade_hash, {'to': '0e5f975c'})],
+    # '69014337': [('info', 'v3.7 -> v4.0: Stelle Hash'), (upgrade_hash, {'to': 'f469bcba'})],
+
+    # '47695dd6': [
+    #     ('info', 'v3.7 -> v4.0: Stelle Body IB Hash'),
+    #     (multiply_indexed_section, {
+    #         'title': 'FixedStelleDestruction',
+    #         'hash': 'ef776fb5',
+    #         'trg_indices': ['45138', '6603'],
+    #         'src_indices': ['0', '35661'],
+    #     })
+    # ],
+    
+    # 'f80cc950': [('info', 'v4.0 -> v4.2: Stelle Hash'), (upgrade_hash, {'to': '0d85a303'})],
+    # '344c4e99': [('info', 'v4.0 -> v4.2: Stelle Hash'), (upgrade_hash, {'to': '89a23fcd'})],
+    # '54d45960': [('info', 'v4.0 -> v4.2: Stelle Hash'), (upgrade_hash, {'to': '43d9095b'})],
+
+    # 'ef776fb5': [
+    #     ('info', 'v3.7 -> v4.0: Stelle Body IB Hash'),
+    #     (multiply_indexed_section, {
+    #         'title': 'FixedStelleDestruction',
+    #         'hash': '5bdd3731',
+    #         'trg_indices': ['45138', '6717'],
+    #         'src_indices': ['45138', '6603'],
+    #     })
+    # ],
 }
