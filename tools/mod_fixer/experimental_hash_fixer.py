@@ -45,7 +45,7 @@ ini_file_script = get_script("tools/general/ini_file.py")
 def fix(mod_path=".", is_dry_run=False):
     print("Fixing mod with experimental hash fixer...")
 
-    files = input_output_manager_script["get_all_files_with_extension"](mod_path, "ini")
+    files = input_output_manager_script["get_all_files_with_extension"](mod_path, "ini", True)
     ini_files = [ini_file_script["IniFile"](file) for file in files]
 
     replacing_hashes_path = "datas/replacing_hashes.json"
